@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.sql.Time;
 
 @Entity
 @Data
@@ -19,10 +20,10 @@ public class UserLoginDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String userName;
-    private Date date;
+    private Time time;
 
-    public UserLoginDetails(String userName,Date date){
+    public UserLoginDetails(String userName,Time time){
         this.userName=userName;
-        this.date=date;
+        this.time=time;
     }
 }

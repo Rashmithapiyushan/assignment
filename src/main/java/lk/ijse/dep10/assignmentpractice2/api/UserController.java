@@ -1,5 +1,8 @@
 package lk.ijse.dep10.assignmentpractice2.api;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lk.ijse.dep10.assignmentpractice2.entity.AuthRequest;
 import lk.ijse.dep10.assignmentpractice2.entity.UserInfo;
 import lk.ijse.dep10.assignmentpractice2.entity.UserLoginDetails;
@@ -14,10 +17,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "App Http Controller")
+@OpenAPIDefinition(info = @Info(title = "Spring Boot JWT Application"))
 public class UserController {
 
     @Autowired
@@ -57,7 +64,7 @@ public class UserController {
         if (authentication.isAuthenticated()) {
             UserLoginDetails user=new UserLoginDetails();
             user.setUserName(authRequest.getUsername());
-            user.setDate(Date.valueOf(LocalDate.now()));
+            user.setTime(Time.valueOf(LocalTime.now()));
             service.addUserLoginDetails(user);
             return jwtService.generateToken(authRequest.getUsername());
         } else {
